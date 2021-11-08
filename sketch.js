@@ -38,7 +38,7 @@ function setup() {
   ground = createSprite(200,180,400,20);
   ground.addImage("ground",groundImage);
   ground.x = ground.width /2;
-  ground.velocityX = -4;
+ 
   
   invisibleGround = createSprite(200,190,400,10);
   invisibleGround.visible = false;
@@ -52,7 +52,12 @@ function draw() {
   background(180);
   text("Puntuación: "+ score, 500,50);
   score = score + Math.round(frameCount/60);
-  
+  if(gameState === PLAY){
+    ground.velocityX = -4;
+  }
+  else if(gameState === END){
+    ground.velocityX = 0;
+  }
   
   if(keyDown("space")&& trex.y >= 100) {
     trex.velocityY = -13;
